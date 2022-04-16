@@ -16,13 +16,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Public Route
+//USERS
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout']);
+
+//PRODUCTS
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('products/search/{name}', [ProductController::class, 'search']);
 
+//ORDERS
+
 // Protected Route
-Route::post('/logout', [AuthController::class, 'logout']);
 Route::middleware('auth:sanctum')->post('/products', [ProductController::class, 'store']);
 Route::middleware('auth:sanctum')->put('/products/{id}', [ProductController::class, 'update']);
 Route::middleware('auth:sanctum')->delete('/products/{id}', [ProductController::class, 'destroy']);
